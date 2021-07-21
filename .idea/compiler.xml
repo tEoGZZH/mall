@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="cart-service" />
         <module name="category-service" />
+        <module name="address-service" />
         <module name="cart-mapper" />
         <module name="mall-web" />
         <module name="user-service" />
@@ -26,10 +26,10 @@
         <module name="category-api" />
       </profile>
       <profile name="Annotation profile for mall" enabled="true">
-        <sourceOutputDir name="../cart-service/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../cart-service/target/generated-test-sources/test-annotations" />
+        <sourceOutputDir name="../address-service/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../address-service/target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="address-service" />
+        <module name="cart-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

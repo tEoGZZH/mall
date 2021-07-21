@@ -4,6 +4,7 @@ import com.winemall.mall.dto.Result;
 import com.winemall.mall.pojo.UserProfile;
 import com.winemall.mall.pojo.Users;
 import com.winemall.mall.service.UserService;
+import com.winemall.mall.service.PictureService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +20,9 @@ public class UserController {
     //使用dubbo注解远程调用user-service
     @Reference
     private UserService userService;
+    @Reference
+    private PictureService pictureService;
+
     //使用dubbo远程调度order-service
     @RequestMapping("/id")
     public Users getUserById(){
@@ -59,6 +63,12 @@ public class UserController {
                 return  true;
             }
         }
+        return false;
+    }
+
+    @RequestMapping("/uploadheadimg")
+    public boolean uploadHeadImg(){
+
         return false;
     }
 
