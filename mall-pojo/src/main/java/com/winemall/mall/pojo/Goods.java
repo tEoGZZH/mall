@@ -1,8 +1,9 @@
 package com.winemall.mall.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Goods {
+public class Goods implements Serializable {
     private Long goodsId;
 
     private String goodsTitle;

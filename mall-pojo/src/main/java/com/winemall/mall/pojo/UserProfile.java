@@ -1,8 +1,9 @@
 package com.winemall.mall.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserProfile {
+public class UserProfile implements Serializable {
     private String phone;
 
     private String name;

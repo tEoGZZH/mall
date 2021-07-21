@@ -1,6 +1,8 @@
 package com.winemall.mall.pojo;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     private Long addrId;
 
     private String phone;

@@ -1,6 +1,8 @@
 package com.winemall.mall.pojo;
 
-public class CartKey {
+import java.io.Serializable;
+
+public class CartKey implements Serializable {
     private Long goodsId;
 
     private String phone;

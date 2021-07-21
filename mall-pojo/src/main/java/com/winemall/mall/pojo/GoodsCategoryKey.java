@@ -1,6 +1,8 @@
 package com.winemall.mall.pojo;
 
-public class GoodsCategoryKey {
+import java.io.Serializable;
+
+public class GoodsCategoryKey implements Serializable {
     private Long goodsId;
 
     private Long categoryId;

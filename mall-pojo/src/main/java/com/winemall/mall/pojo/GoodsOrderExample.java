@@ -1,10 +1,11 @@
 package com.winemall.mall.pojo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class GoodsOrderExample {
+public class GoodsOrderExample implements Serializable {
     protected String orderByClause;
 
     protected boolean distinct;
