@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    username: SYSDBA
+    password: 123456789
+    url: jdbc:dm://192.168.43.228:5236/VSPACE
+    driver-class-name: dm.jdbc.driver.DmDriver
+mybatis:
+  mapper-locations: classpath:com/winemall/mall/mapper/*.xml
+logging:
+  level:
+    com:
+      cestc:
+        vspace:
+          mapper: debug
+

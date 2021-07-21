@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winemall.mall.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.winemall.mall.pojo.Goods" >
+    <id column="GOODS_ID" property="goodsId" jdbcType="BIGINT" />
+    <result column="GOODS_TITLE" property="goodsTitle" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="REAL" />
+    <result column="DISCOUNT" property="discount" jdbcType="REAL" />
+    <result column="SIZE" property="size" jdbcType="INTEGER" />
+    <result column="ALCOHOL" property="alcohol" jdbcType="REAL" />
+    <result column="RATINGS" property="ratings" jdbcType="REAL" />
+    <result column="AMMOUNT" property="ammount" jdbcType="INTEGER" />
+    <result column="UP_DATE" property="upDate" jdbcType="TIMESTAMP" />
+    <result column="DOWN_DATE" property="downDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.winemall.mall.pojo.GoodsWithBLOBs" extends="BaseResultMap" >
+    <result column="DESCRIPTION" property="description" jdbcType="LONGVARCHAR" />
+    <result column="IMAGE_URL" property="imageUrl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    GOODS_ID, GOODS_TITLE, PRICE, DISCOUNT, SIZE, ALCOHOL, RATINGS, AMMOUNT, UP_DATE, 
+    DOWN_DATE, UPDATE_DATE
+  </sql>
+  <sql id="Blob_Column_List" >
+    DESCRIPTION, IMAGE_URL
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.winemall.mall.pojo.GoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from MIKE.GOODS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.winemall.mall.pojo.GoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MIKE.GOODS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from MIKE.GOODS
+    where GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from MIKE.GOODS
+    where GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.winemall.mall.pojo.GoodsExample" >
+    delete from MIKE.GOODS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.winemall.mall.pojo.GoodsWithBLOBs" >
+    insert into MIKE.GOODS (GOODS_ID, GOODS_TITLE, PRICE, 
+      DISCOUNT, SIZE, ALCOHOL, 
+      RATINGS, AMMOUNT, UP_DATE, 
+      DOWN_DATE, UPDATE_DATE, DESCRIPTION, 
+      IMAGE_URL)
+    values (#{goodsId,jdbcType=BIGINT}, #{goodsTitle,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, 
+      #{discount,jdbcType=REAL}, #{size,jdbcType=INTEGER}, #{alcohol,jdbcType=REAL}, 
+      #{ratings,jdbcType=REAL}, #{ammount,jdbcType=INTEGER}, #{upDate,jdbcType=TIMESTAMP}, 
+      #{downDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}, 
+      #{imageUrl,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.winemall.mall.pojo.GoodsWithBLOBs" >
+    insert into MIKE.GOODS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        GOODS_ID,
+      </if>
+      <if test="goodsTitle != null" >
+        GOODS_TITLE,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="discount != null" >
+        DISCOUNT,
+      </if>
+      <if test="size != null" >
+        SIZE,
+      </if>
+      <if test="alcohol != null" >
+        ALCOHOL,
+      </if>
+      <if test="ratings != null" >
+        RATINGS,
+      </if>
+      <if test="ammount != null" >
+        AMMOUNT,
+      </if>
+      <if test="upDate != null" >
+        UP_DATE,
+      </if>
+      <if test="downDate != null" >
+        DOWN_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="imageUrl != null" >
+        IMAGE_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsTitle != null" >
+        #{goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=REAL},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="alcohol != null" >
+        #{alcohol,jdbcType=REAL},
+      </if>
+      <if test="ratings != null" >
+        #{ratings,jdbcType=REAL},
+      </if>
+      <if test="ammount != null" >
+        #{ammount,jdbcType=INTEGER},
+      </if>
+      <if test="upDate != null" >
+        #{upDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downDate != null" >
+        #{downDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.winemall.mall.pojo.GoodsExample" resultType="java.lang.Integer" >
+    select count(*) from MIKE.GOODS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update MIKE.GOODS
+    <set >
+      <if test="record.goodsId != null" >
+        GOODS_ID = #{record.goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsTitle != null" >
+        GOODS_TITLE = #{record.goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        PRICE = #{record.price,jdbcType=REAL},
+      </if>
+      <if test="record.discount != null" >
+        DISCOUNT = #{record.discount,jdbcType=REAL},
+      </if>
+      <if test="record.size != null" >
+        SIZE = #{record.size,jdbcType=INTEGER},
+      </if>
+      <if test="record.alcohol != null" >
+        ALCOHOL = #{record.alcohol,jdbcType=REAL},
+      </if>
+      <if test="record.ratings != null" >
+        RATINGS = #{record.ratings,jdbcType=REAL},
+      </if>
+      <if test="record.ammount != null" >
+        AMMOUNT = #{record.ammount,jdbcType=INTEGER},
+      </if>
+      <if test="record.upDate != null" >
+        UP_DATE = #{record.upDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.downDate != null" >
+        DOWN_DATE = #{record.downDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateDate != null" >
+        UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.description != null" >
+        DESCRIPTION = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.imageUrl != null" >
+        IMAGE_URL = #{record.imageUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update MIKE.GOODS
+    set GOODS_ID = #{record.goodsId,jdbcType=BIGINT},
+      GOODS_TITLE = #{record.goodsTitle,jdbcType=VARCHAR},
+      PRICE = #{record.price,jdbcType=REAL},
+      DISCOUNT = #{record.discount,jdbcType=REAL},
+      SIZE = #{record.size,jdbcType=INTEGER},
+      ALCOHOL = #{record.alcohol,jdbcType=REAL},
+      RATINGS = #{record.ratings,jdbcType=REAL},
+      AMMOUNT = #{record.ammount,jdbcType=INTEGER},
+      UP_DATE = #{record.upDate,jdbcType=TIMESTAMP},
+      DOWN_DATE = #{record.downDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{record.description,jdbcType=LONGVARCHAR},
+      IMAGE_URL = #{record.imageUrl,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update MIKE.GOODS
+    set GOODS_ID = #{record.goodsId,jdbcType=BIGINT},
+      GOODS_TITLE = #{record.goodsTitle,jdbcType=VARCHAR},
+      PRICE = #{record.price,jdbcType=REAL},
+      DISCOUNT = #{record.discount,jdbcType=REAL},
+      SIZE = #{record.size,jdbcType=INTEGER},
+      ALCOHOL = #{record.alcohol,jdbcType=REAL},
+      RATINGS = #{record.ratings,jdbcType=REAL},
+      AMMOUNT = #{record.ammount,jdbcType=INTEGER},
+      UP_DATE = #{record.upDate,jdbcType=TIMESTAMP},
+      DOWN_DATE = #{record.downDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.winemall.mall.pojo.GoodsWithBLOBs" >
+    update MIKE.GOODS
+    <set >
+      <if test="goodsTitle != null" >
+        GOODS_TITLE = #{goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=REAL},
+      </if>
+      <if test="discount != null" >
+        DISCOUNT = #{discount,jdbcType=REAL},
+      </if>
+      <if test="size != null" >
+        SIZE = #{size,jdbcType=INTEGER},
+      </if>
+      <if test="alcohol != null" >
+        ALCOHOL = #{alcohol,jdbcType=REAL},
+      </if>
+      <if test="ratings != null" >
+        RATINGS = #{ratings,jdbcType=REAL},
+      </if>
+      <if test="ammount != null" >
+        AMMOUNT = #{ammount,jdbcType=INTEGER},
+      </if>
+      <if test="upDate != null" >
+        UP_DATE = #{upDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downDate != null" >
+        DOWN_DATE = #{downDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        IMAGE_URL = #{imageUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.winemall.mall.pojo.GoodsWithBLOBs" >
+    update MIKE.GOODS
+    set GOODS_TITLE = #{goodsTitle,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=REAL},
+      DISCOUNT = #{discount,jdbcType=REAL},
+      SIZE = #{size,jdbcType=INTEGER},
+      ALCOHOL = #{alcohol,jdbcType=REAL},
+      RATINGS = #{ratings,jdbcType=REAL},
+      AMMOUNT = #{ammount,jdbcType=INTEGER},
+      UP_DATE = #{upDate,jdbcType=TIMESTAMP},
+      DOWN_DATE = #{downDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{description,jdbcType=LONGVARCHAR},
+      IMAGE_URL = #{imageUrl,jdbcType=LONGVARCHAR}
+    where GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.winemall.mall.pojo.Goods" >
+    update MIKE.GOODS
+    set GOODS_TITLE = #{goodsTitle,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=REAL},
+      DISCOUNT = #{discount,jdbcType=REAL},
+      SIZE = #{size,jdbcType=INTEGER},
+      ALCOHOL = #{alcohol,jdbcType=REAL},
+      RATINGS = #{ratings,jdbcType=REAL},
+      AMMOUNT = #{ammount,jdbcType=INTEGER},
+      UP_DATE = #{upDate,jdbcType=TIMESTAMP},
+      DOWN_DATE = #{downDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </update>
+</mapper>

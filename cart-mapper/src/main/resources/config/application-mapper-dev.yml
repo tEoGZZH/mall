@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    username: SYSDBA
+    password: 123456789
+    url: jdbc:dm://192.168.43.228:5236/VSPACE?useUnicode=true&amp;characterEncoding=utf-8
+    driver-class-name: dm.jdbc.driver.DmDriver
+mybatis:
+  mapper-locations: classpath:com/winemall/mall/mapper/*.xml
+logging:
+  level:
+    com:
+      cestc:
+        vspace:
+          mapper: debug
+pagehelper:
+  helper-dialect: mysql
+  #分页合理化参数，默认值为false。当该参数设置为 true 时，pageNum<=0 时会查询第一页， pageNum>pages（超过总数时），会查询最后一页
+  reasonable: true
+  #支持通过 Mapper接口参数来传递分页参数
+  support-methods-arguments: true
+
