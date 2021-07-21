@@ -44,19 +44,7 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <!--元数据中心插件-->
-    <dependency>
-      <groupId>org.apache.dubbo</groupId>
-      <artifactId>dubbo-metadata-report-zookeeper</artifactId>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>log4j</artifactId>
-          <groupId>log4j</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <!--业务模块依赖接口模块-->
+    <!--用户业务模块依赖用户接口模块-->
     <dependency>
       <groupId>com.winemall</groupId>
       <artifactId>address-api</artifactId>
@@ -85,10 +73,17 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-logging</artifactId>
     </dependency>
-    <!--添加分页插件依赖-->
+    <!--元数据中心插件-->
     <dependency>
-      <groupId>com.github.pagehelper</groupId>
-      <artifactId>pagehelper-spring-boot-starter</artifactId>
+      <groupId>org.apache.dubbo</groupId>
+      <artifactId>dubbo-metadata-report-zookeeper</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <!--测试插件-->
     <dependency>

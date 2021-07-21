@@ -4,14 +4,13 @@ import com.winemall.mall.pojo.Cart;
 import com.winemall.mall.pojo.CartKey;
 import com.winemall.mall.service.CartService;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/cart")
+@CrossOrigin(methods = {RequestMethod.GET, RequestMethod.POST})
 public class CartController {
     //使用dubbo注解远程调用cart-service
     @Reference

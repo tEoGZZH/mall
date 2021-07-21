@@ -7,6 +7,7 @@ import com.winemall.mall.service.AddressService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -46,36 +47,44 @@ public class AddressServiceImp implements AddressService {
 
     @Override
     public boolean setDefautlAddress(Address addr) {
-//        //将之前的默认值取消默认
-//        //①: 创建一个地址样例对象
-//        AddressExample example = new AddressExample();
-//        //②: 设置修改条件,根据拥有者手机号将该用户的默认收货地址取消默认
-//        example.createCriteria().andPhoneEqualTo(addr.getPhone())
-//                .(true);
-//        //③: 创建一个对象用于修改(只需要isDefault属性为false即可,其他属性不需要)
-//        Address updateAddr = new Address();
-//        updateAddr.setIsDefault();
-//        //⑤: 根据条件修改
-//        int i = receiveAddrMapper.updateByExampleSelective(updateAddr, example);
-//        //将新的地址设置为默认值
-//        //①: 将isDefault属性设置为true,将拥有者手机号设置为null(提高修改效率)
-//        addr.setIsDefault();
-//        addr.setPhone(null);
-//        //②: 根据地址编号进行修改,设置新的默认地址
-//        int j = receiveAddrMapper.updateByPrimaryKeySelective(addr);
-//        if (i > 0 && j > 0) {
-//            return true;
-//        }
-        return false;
+        // 根据 id 找到地址
+        byte[] defalut = new byte[]{(byte) 1};
+
+        if(Arrays.equals(addr.getIsDefault(), defalut)){
+            // 如果已经是默认的了
+            return true;
+        }
+        else{
+            // 把其他任何有默认的设置为非默认
+            String phone = addr.getPhone();
+            AddressExample addressExample = new AddressExample();
+            addressExample.createCriteria().andPhoneEqualTo(phone);
+            List<Address> addresses = receiveAddrMapper.selectByExample(addressExample);
+            // 循环设置
+            for(Address address:addresses){
+                address.setIsDefault(new byte[]{(byte) 0});
+                receiveAddrMapper.updateByPrimaryKeySelective(address);
+            }
+            // 最后设置该地址为默认
+            addr.setIsDefault(new byte[]{(byte) 1});
+            int i = receiveAddrMapper.updateByPrimaryKeySelective(addr);
+            return i > 0;
+        }
+
     }
 
     @Override
     public Address findDefualtAddress(String phone) {
-//        AddressExample example = new AddressExample();
-//        example.createCriteria().andPhoneEqualTo(phone).(true);
-//        List<Address> addrs = receiveAddrMapper.selectByExample(example);
-//        //由于每个用户只有一个默认收货地址,所以取出0号下标的地址对象返回即可
-//        return addrs.get(0);
-        return new Address();
+        byte[] defalut = new byte[]{(byte) 1};
+        AddressExample example = new AddressExample();
+        example.createCriteria().andPhoneEqualTo(phone);
+        List<Address> addresses = receiveAddrMapper.selectByExample(example);
+        // 找到默认地址
+        for(Address address : addresses){
+            if(Arrays.equals(address.getIsDefault(), defalut)){
+                return address;
+            }
+        }
+        return null;
     }
 }

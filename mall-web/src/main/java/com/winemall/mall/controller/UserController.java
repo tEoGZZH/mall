@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(methods = {RequestMethod.GET, RequestMethod.POST})
 public class UserController {
 
     //使用dubbo注解远程调用user-service
@@ -87,6 +88,8 @@ public class UserController {
     public boolean uploadHeadImg(@RequestBody Map info){
         String img = (String) info.get("img");
         String phone = (String) info.get("phone");
+        long filesize = (long) info.get("filesize");
+        String ext = (String) info.get("ext");
         UserProfile user = userService.findByPhone(phone);
         if(user != null){
             // 图片格式转换
@@ -99,12 +102,11 @@ public class UserController {
                 pictureService.delete(img_url);
             }
             // 上传图片
-            img_url = pictureService.upload(imgByte, , );
+            img_url = pictureService.upload(imgByte, filesize, ext);
             // 存 url
             basic.setHeadImages(img_url);
             return userService.updateUserProfile(basic);
         }
         return false;
     }
-
 }

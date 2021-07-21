@@ -6,12 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="cart-service" />
         <module name="category-service" />
         <module name="address-service" />
         <module name="cart-mapper" />
         <module name="mall-web" />
         <module name="user-service" />
         <module name="address-mapper" />
+        <module name="order-api" />
         <module name="mall-pojo" />
         <module name="goods-api" />
         <module name="user-mapper" />
@@ -21,15 +23,11 @@
         <module name="picture-service" />
         <module name="address-api" />
         <module name="picture-api" />
+        <module name="order-mapper" />
         <module name="goods-mapper" />
+        <module name="order-service" />
         <module name="cart-api" />
         <module name="category-api" />
-      </profile>
-      <profile name="Annotation profile for mall" enabled="true">
-        <sourceOutputDir name="../address-service/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../address-service/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="cart-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -52,6 +50,9 @@
       <module name="goods-service" options="-parameters" />
       <module name="mall-pojo" options="-parameters" />
       <module name="mall-web" options="-parameters" />
+      <module name="order-api" options="-parameters" />
+      <module name="order-mapper" options="-parameters" />
+      <module name="order-service" options="-parameters" />
       <module name="picture-api" options="-parameters" />
       <module name="picture-api (1)" options="" />
       <module name="picture-service" options="-parameters" />

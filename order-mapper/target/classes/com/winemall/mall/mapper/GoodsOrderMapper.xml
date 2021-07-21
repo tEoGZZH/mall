@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.winemall.mall.mapper.GoodsOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.winemall.mall.pojo.GoodsOrder" >
+    <id column="ORDER_ID" property="orderId" jdbcType="BIGINT" />
+    <id column="GOODS_ID" property="goodsId" jdbcType="BIGINT" />
+    <result column="AMMOUNT" property="ammount" jdbcType="INTEGER" />
+    <result column="JOIN_DATE" property="joinDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ORDER_ID, GOODS_ID, AMMOUNT, JOIN_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.winemall.mall.pojo.GoodsOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MIKE.GOODS_ORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.winemall.mall.pojo.GoodsOrderKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from MIKE.GOODS_ORDER
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+      and GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.winemall.mall.pojo.GoodsOrderKey" >
+    delete from MIKE.GOODS_ORDER
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+      and GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.winemall.mall.pojo.GoodsOrderExample" >
+    delete from MIKE.GOODS_ORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.winemall.mall.pojo.GoodsOrder" >
+    insert into MIKE.GOODS_ORDER (ORDER_ID, GOODS_ID, AMMOUNT, 
+      JOIN_DATE)
+    values (#{orderId,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{ammount,jdbcType=INTEGER}, 
+      #{joinDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.winemall.mall.pojo.GoodsOrder" >
+    insert into MIKE.GOODS_ORDER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="goodsId != null" >
+        GOODS_ID,
+      </if>
+      <if test="ammount != null" >
+        AMMOUNT,
+      </if>
+      <if test="joinDate != null" >
+        JOIN_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="ammount != null" >
+        #{ammount,jdbcType=INTEGER},
+      </if>
+      <if test="joinDate != null" >
+        #{joinDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.winemall.mall.pojo.GoodsOrderExample" resultType="java.lang.Integer" >
+    select count(*) from MIKE.GOODS_ORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update MIKE.GOODS_ORDER
+    <set >
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsId != null" >
+        GOODS_ID = #{record.goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ammount != null" >
+        AMMOUNT = #{record.ammount,jdbcType=INTEGER},
+      </if>
+      <if test="record.joinDate != null" >
+        JOIN_DATE = #{record.joinDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update MIKE.GOODS_ORDER
+    set ORDER_ID = #{record.orderId,jdbcType=BIGINT},
+      GOODS_ID = #{record.goodsId,jdbcType=BIGINT},
+      AMMOUNT = #{record.ammount,jdbcType=INTEGER},
+      JOIN_DATE = #{record.joinDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.winemall.mall.pojo.GoodsOrder" >
+    update MIKE.GOODS_ORDER
+    <set >
+      <if test="ammount != null" >
+        AMMOUNT = #{ammount,jdbcType=INTEGER},
+      </if>
+      <if test="joinDate != null" >
+        JOIN_DATE = #{joinDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+      and GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.winemall.mall.pojo.GoodsOrder" >
+    update MIKE.GOODS_ORDER
+    set AMMOUNT = #{ammount,jdbcType=INTEGER},
+      JOIN_DATE = #{joinDate,jdbcType=TIMESTAMP}
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+      and GOODS_ID = #{goodsId,jdbcType=BIGINT}
+  </update>
+</mapper>

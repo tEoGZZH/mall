@@ -1,5 +1,5 @@
 server:
-  address: localhost
+  address: 192.168.43.211
   port: 8001
   servlet:
     context-path: /

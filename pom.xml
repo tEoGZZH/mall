@@ -29,6 +29,9 @@
     <module>user-mapper</module>
     <module>user-api</module>
     <module>user-service</module>
+    <module>order-mapper</module>
+    <module>order-api</module>
+    <module>order-service</module>
   </modules>
 
   <parent>
