@@ -10,6 +10,7 @@ import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -40,6 +41,7 @@ public class UserServiceImp implements UserService {
         //增加基本信息
         UserProfile userProfile = new UserProfile();
         userProfile.setPhone(user.getPhone());
+        userProfile.setRegDate(new Date());
         int insert_basic = basicMapper.insert(userProfile);
         if (insert_user == 1 && insert_basic == 1){
             return true;
@@ -58,7 +60,14 @@ public class UserServiceImp implements UserService {
         //通过查询条件查询数据
         List<Users> tbUsers = userMapper.selectByExample(userExample);
         if (tbUsers.size() == 1){
-            return  true;
+             //增加基本信息
+            UserProfile userProfile = new UserProfile();
+            userProfile.setPhone(user.getPhone());
+            userProfile.setLastLoginDate(new Date());
+            int insert_basic = basicMapper.insert(userProfile);
+            if(insert_basic==1){
+                return true;
+            }
         }
         return false;
     }

@@ -12,7 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -43,20 +45,26 @@ public class UserController {
         return userService.register(user);
     }
 
-    @RequestMapping("/findByPhone")
+    @RequestMapping("/profile")
     public UserProfile findBasicByPhone(String phone){
         UserProfile basic = userService.findByPhone(phone);
-        return  basic;
+        return basic;
     }
 
     @RequestMapping("/updatePassword")
-    public boolean updatePassword(@RequestBody Users user, String newpwd){
-        System.out.println("================" + user);
+    public boolean updatePassword(@RequestBody Map info){
+        System.out.println("================" + info);
         //验证用户输入的当前密码是否正确
+        String phone = (String) info.get("phone");
+        String oldpswd = (String) info.get("password");
+        String newpswd = (String) info.get("newPassword");
+        Users user = new Users();
+        user.setPhone(phone);
+        user.setPassword(oldpswd);
         boolean login = userService.login(user);
         if (login) {
             //如果账户密码正确,则将将用户的新密码设置给password属性
-            user.setPassword(newpwd);
+            user.setPassword(newpswd);
             //调用maper接口修改
             boolean update = userService.updatePassword(user);
             if (update) {
@@ -66,9 +74,36 @@ public class UserController {
         return false;
     }
 
-    @RequestMapping("/uploadheadimg")
-    public boolean uploadHeadImg(){
+    @RequestMapping("/updateProfile")
+    public boolean updateProfile(@RequestBody UserProfile userProfile){
+        UserProfile user = userService.findByPhone(userProfile.getPhone());
+        if(user != null){
+            return userService.updateUserProfile(userProfile);
+        }
+        return false;
+    }
 
+    @RequestMapping("/uploadheadimg")
+    public boolean uploadHeadImg(@RequestBody Map info){
+        String img = (String) info.get("img");
+        String phone = (String) info.get("phone");
+        UserProfile user = userService.findByPhone(phone);
+        if(user != null){
+            // 图片格式转换
+            byte[] imgByte = Base64.getDecoder().decode(img);
+
+            UserProfile basic = userService.findByPhone(phone);
+            String img_url = basic.getHeadImages();
+            if(img_url != null){
+                // 删除图片
+                pictureService.delete(img_url);
+            }
+            // 上传图片
+            img_url = pictureService.upload(imgByte, , );
+            // 存 url
+            basic.setHeadImages(img_url);
+            return userService.updateUserProfile(basic);
+        }
         return false;
     }
 
