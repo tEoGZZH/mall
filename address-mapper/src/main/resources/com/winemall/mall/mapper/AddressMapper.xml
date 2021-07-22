@@ -6,7 +6,7 @@
     <result column="PHONE" property="phone" jdbcType="CHAR" />
     <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
     <result column="CIRY" property="ciry" jdbcType="VARCHAR" />
-    <result column="SECTION" property="section" jdbcType="VARCHAR" />
+    <result column="SECT" property="sect" jdbcType="VARCHAR" />
     <result column="DETAIL" property="detail" jdbcType="VARCHAR" />
     <result column="RECEIVE_NAME" property="receiveName" jdbcType="VARCHAR" />
     <result column="RECEIVE_PHONE" property="receivePhone" jdbcType="CHAR" />
@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ADDR_ID, PHONE, PROVINCE, CIRY, SECTION, DETAIL, RECEIVE_NAME, RECEIVE_PHONE
+    ADDR_ID, PHONE, PROVINCE, CIRY, SECT, DETAIL, RECEIVE_NAME, RECEIVE_PHONE
   </sql>
   <sql id="Blob_Column_List" >
     IS_DEFAULT
@@ -128,11 +128,11 @@
   </delete>
   <insert id="insert" parameterType="com.winemall.mall.pojo.Address" >
     insert into MIKE.ADDRESS (ADDR_ID, PHONE, PROVINCE, 
-      CIRY, SECTION, DETAIL, 
+      CIRY, SECT, DETAIL, 
       RECEIVE_NAME, RECEIVE_PHONE, IS_DEFAULT
       )
     values (#{addrId,jdbcType=BIGINT}, #{phone,jdbcType=CHAR}, #{province,jdbcType=VARCHAR}, 
-      #{ciry,jdbcType=VARCHAR}, #{section,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, 
+      #{ciry,jdbcType=VARCHAR}, #{sect,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, 
       #{receiveName,jdbcType=VARCHAR}, #{receivePhone,jdbcType=CHAR}, #{isDefault,jdbcType=BINARY}
       )
   </insert>
@@ -151,8 +151,8 @@
       <if test="ciry != null" >
         CIRY,
       </if>
-      <if test="section != null" >
-        SECTION,
+      <if test="sect != null" >
+        SECT,
       </if>
       <if test="detail != null" >
         DETAIL,
@@ -180,8 +180,8 @@
       <if test="ciry != null" >
         #{ciry,jdbcType=VARCHAR},
       </if>
-      <if test="section != null" >
-        #{section,jdbcType=VARCHAR},
+      <if test="sect != null" >
+        #{sect,jdbcType=VARCHAR},
       </if>
       <if test="detail != null" >
         #{detail,jdbcType=VARCHAR},
@@ -218,8 +218,8 @@
       <if test="record.ciry != null" >
         CIRY = #{record.ciry,jdbcType=VARCHAR},
       </if>
-      <if test="record.section != null" >
-        SECTION = #{record.section,jdbcType=VARCHAR},
+      <if test="record.sect != null" >
+        SECT = #{record.sect,jdbcType=VARCHAR},
       </if>
       <if test="record.detail != null" >
         DETAIL = #{record.detail,jdbcType=VARCHAR},
@@ -244,7 +244,7 @@
       PHONE = #{record.phone,jdbcType=CHAR},
       PROVINCE = #{record.province,jdbcType=VARCHAR},
       CIRY = #{record.ciry,jdbcType=VARCHAR},
-      SECTION = #{record.section,jdbcType=VARCHAR},
+      SECT = #{record.sect,jdbcType=VARCHAR},
       DETAIL = #{record.detail,jdbcType=VARCHAR},
       RECEIVE_NAME = #{record.receiveName,jdbcType=VARCHAR},
       RECEIVE_PHONE = #{record.receivePhone,jdbcType=CHAR},
@@ -259,7 +259,7 @@
       PHONE = #{record.phone,jdbcType=CHAR},
       PROVINCE = #{record.province,jdbcType=VARCHAR},
       CIRY = #{record.ciry,jdbcType=VARCHAR},
-      SECTION = #{record.section,jdbcType=VARCHAR},
+      SECT = #{record.sect,jdbcType=VARCHAR},
       DETAIL = #{record.detail,jdbcType=VARCHAR},
       RECEIVE_NAME = #{record.receiveName,jdbcType=VARCHAR},
       RECEIVE_PHONE = #{record.receivePhone,jdbcType=CHAR}
@@ -279,8 +279,8 @@
       <if test="ciry != null" >
         CIRY = #{ciry,jdbcType=VARCHAR},
       </if>
-      <if test="section != null" >
-        SECTION = #{section,jdbcType=VARCHAR},
+      <if test="sect != null" >
+        SECT = #{sect,jdbcType=VARCHAR},
       </if>
       <if test="detail != null" >
         DETAIL = #{detail,jdbcType=VARCHAR},
@@ -302,7 +302,7 @@
     set PHONE = #{phone,jdbcType=CHAR},
       PROVINCE = #{province,jdbcType=VARCHAR},
       CIRY = #{ciry,jdbcType=VARCHAR},
-      SECTION = #{section,jdbcType=VARCHAR},
+      SECT = #{sect,jdbcType=VARCHAR},
       DETAIL = #{detail,jdbcType=VARCHAR},
       RECEIVE_NAME = #{receiveName,jdbcType=VARCHAR},
       RECEIVE_PHONE = #{receivePhone,jdbcType=CHAR},
@@ -314,7 +314,7 @@
     set PHONE = #{phone,jdbcType=CHAR},
       PROVINCE = #{province,jdbcType=VARCHAR},
       CIRY = #{ciry,jdbcType=VARCHAR},
-      SECTION = #{section,jdbcType=VARCHAR},
+      SECT = #{sect,jdbcType=VARCHAR},
       DETAIL = #{detail,jdbcType=VARCHAR},
       RECEIVE_NAME = #{receiveName,jdbcType=VARCHAR},
       RECEIVE_PHONE = #{receivePhone,jdbcType=CHAR}

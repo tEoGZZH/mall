@@ -73,6 +73,12 @@ public class OrderController {
         return addresses;
     }
 
+    @RequestMapping("/test")
+    public List<Address> getTest(){
+        List<Address> addresses = addressService.findAddressByPhone("12345678910");
+        return addresses;
+    }
+
     @RequestMapping("/addaddress")
     public boolean addAddress(@RequestBody Address address){
         return addressService.insertAddress(address);

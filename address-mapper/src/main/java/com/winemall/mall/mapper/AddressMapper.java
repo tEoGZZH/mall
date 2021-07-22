@@ -1,13 +1,15 @@
 package com.winemall.mall.mapper;
 
-import com.winemall.mall.pojo.Address;
-import com.winemall.mall.pojo.AddressExample;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
+import com.winemall.mall.pojo.AddressExample;
+import com.winemall.mall.pojo.Address;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
 @Mapper
+@Repository
 public interface AddressMapper {
     int countByExample(AddressExample example);
 

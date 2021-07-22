@@ -11,7 +11,7 @@ public class Address implements Serializable {
 
     private String ciry;
 
-    private String section;
+    private String sect;
 
     private String detail;
 
@@ -53,12 +53,12 @@ public class Address implements Serializable {
         this.ciry = ciry == null ? null : ciry.trim();
     }
 
-    public String getSection() {
-        return section;
+    public String getSect() {
+        return sect;
     }
 
-    public void setSection(String section) {
-        this.section = section == null ? null : section.trim();
+    public void setSect(String sect) {
+        this.sect = sect == null ? null : sect.trim();
     }
 
     public String getDetail() {

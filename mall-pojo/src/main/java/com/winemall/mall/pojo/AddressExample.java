@@ -375,73 +375,73 @@ public class AddressExample implements Serializable {
             return (Criteria) this;
         }
 
-        public Criteria andSectionIsNull() {
-            addCriterion("SECTION is null");
+        public Criteria andSectIsNull() {
+            addCriterion("SECT is null");
             return (Criteria) this;
         }
 
-        public Criteria andSectionIsNotNull() {
-            addCriterion("SECTION is not null");
+        public Criteria andSectIsNotNull() {
+            addCriterion("SECT is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSectionEqualTo(String value) {
-            addCriterion("SECTION =", value, "section");
+        public Criteria andSectEqualTo(String value) {
+            addCriterion("SECT =", value, "sect");
             return (Criteria) this;
         }
 
-        public Criteria andSectionNotEqualTo(String value) {
-            addCriterion("SECTION <>", value, "section");
+        public Criteria andSectNotEqualTo(String value) {
+            addCriterion("SECT <>", value, "sect");
             return (Criteria) this;
         }
 
-        public Criteria andSectionGreaterThan(String value) {
-            addCriterion("SECTION >", value, "section");
+        public Criteria andSectGreaterThan(String value) {
+            addCriterion("SECT >", value, "sect");
             return (Criteria) this;
         }
 
-        public Criteria andSectionGreaterThanOrEqualTo(String value) {
-            addCriterion("SECTION >=", value, "section");
+        public Criteria andSectGreaterThanOrEqualTo(String value) {
+            addCriterion("SECT >=", value, "sect");
             return (Criteria) this;
         }
 
-        public Criteria andSectionLessThan(String value) {
-            addCriterion("SECTION <", value, "section");
+        public Criteria andSectLessThan(String value) {
+            addCriterion("SECT <", value, "sect");
             return (Criteria) this;
         }
 
-        public Criteria andSectionLessThanOrEqualTo(String value) {
-            addCriterion("SECTION <=", value, "section");
+        public Criteria andSectLessThanOrEqualTo(String value) {
+            addCriterion("SECT <=", value, "sect");
             return (Criteria) this;
         }
 
-        public Criteria andSectionLike(String value) {
-            addCriterion("SECTION like", value, "section");
+        public Criteria andSectLike(String value) {
+            addCriterion("SECT like", value, "sect");
             return (Criteria) this;
         }
 
-        public Criteria andSectionNotLike(String value) {
-            addCriterion("SECTION not like", value, "section");
+        public Criteria andSectNotLike(String value) {
+            addCriterion("SECT not like", value, "sect");
             return (Criteria) this;
         }
 
-        public Criteria andSectionIn(List<String> values) {
-            addCriterion("SECTION in", values, "section");
+        public Criteria andSectIn(List<String> values) {
+            addCriterion("SECT in", values, "sect");
             return (Criteria) this;
         }
 
-        public Criteria andSectionNotIn(List<String> values) {
-            addCriterion("SECTION not in", values, "section");
+        public Criteria andSectNotIn(List<String> values) {
+            addCriterion("SECT not in", values, "sect");
             return (Criteria) this;
         }
 
-        public Criteria andSectionBetween(String value1, String value2) {
-            addCriterion("SECTION between", value1, value2, "section");
+        public Criteria andSectBetween(String value1, String value2) {
+            addCriterion("SECT between", value1, value2, "sect");
             return (Criteria) this;
         }
 
-        public Criteria andSectionNotBetween(String value1, String value2) {
-            addCriterion("SECTION not between", value1, value2, "section");
+        public Criteria andSectNotBetween(String value1, String value2) {
+            addCriterion("SECT not between", value1, value2, "sect");
             return (Criteria) this;
         }
 
