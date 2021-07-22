@@ -1,36 +1,45 @@
 package com.winemall.mall.pojo;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import java.io.Serializable;
 import java.util.Date;
 
+//goodsId=null, goodsTitle='null', price=null, discount=null, ammount=null
 public class Goods implements Serializable {
-    private Long goodsId;
+    @Field("goods_id")
+    private String goodsId;
 
+    @Field("goods_title")
     private String goodsTitle;
 
+    @Field("goods_price")
     private Float price;
 
+    @Field("goods_discount")
     private Float discount;
 
-    private Integer size;
-
-    private Float alcohol;
-
-    private Float ratings;
-
+    @Field("goods_ammount")
     private Integer ammount;
 
-    private Date upDate;
 
-    private Date downDate;
-
+    @Field("goods_update_time")
     private Date updateDate;
 
-    public Long getGoodsId() {
+    @Override
+    public String toString() {
+        return "Goods{" +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", ammount=" + ammount +
+                '}';
+    }
+
+    public String getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(Long goodsId) {
+    public void setGoodsId(String goodsId) {
         this.goodsId = goodsId;
     }
 
@@ -58,29 +67,6 @@ public class Goods implements Serializable {
         this.discount = discount;
     }
 
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
-    }
-
-    public Float getAlcohol() {
-        return alcohol;
-    }
-
-    public void setAlcohol(Float alcohol) {
-        this.alcohol = alcohol;
-    }
-
-    public Float getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(Float ratings) {
-        this.ratings = ratings;
-    }
 
     public Integer getAmmount() {
         return ammount;
@@ -88,22 +74,6 @@ public class Goods implements Serializable {
 
     public void setAmmount(Integer ammount) {
         this.ammount = ammount;
-    }
-
-    public Date getUpDate() {
-        return upDate;
-    }
-
-    public void setUpDate(Date upDate) {
-        this.upDate = upDate;
-    }
-
-    public Date getDownDate() {
-        return downDate;
-    }
-
-    public void setDownDate(Date downDate) {
-        this.downDate = downDate;
     }
 
     public Date getUpdateDate() {
