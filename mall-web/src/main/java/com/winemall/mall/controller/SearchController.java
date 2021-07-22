@@ -30,7 +30,12 @@ public class SearchController {
     private SearchService searchService;
     @RequestMapping("/search")
     public PageResult findPageByCondition(@RequestParam String keyword, @RequestParam int PageNo){
-        keyword=keyword.replace(" ","");
+        if(keyword!="") {
+            keyword = keyword.replace(" ", "");
+        }
+        else {
+            keyword = "葡萄酒";
+        }
         Condition condition = new Condition();
         condition.setSearchString(keyword);
         condition.setPageNo(PageNo);
